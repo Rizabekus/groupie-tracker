@@ -33,7 +33,10 @@ func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(http.StatusText(http.StatusMethodNotAllowed)))
 		return
 	}
-
+	if r.URL.Path != "/artist-page" {
+		http.NotFound(w, r)
+		return
+	}
 	tmp, err := template.ParseFiles("templates/form.html")
 	if err != nil {
 		fmt.Print(err)
