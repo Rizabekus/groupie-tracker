@@ -7,11 +7,12 @@ import (
 )
 
 func main() {
+	pkg.GetApi()
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
 	http.HandleFunc("/", pkg.MenuHandler)
 	http.HandleFunc("/artist-page", pkg.ArtistPageHandler)
-	log.Println("Server start on http://127.0.0.1:8000")
+	log.Println("Server start on http://127.0.0.1:7000")
 	log.Println("OK(200)")
-	err := http.ListenAndServe(":8000", nil)
+	err := http.ListenAndServe(":7000", nil)
 	log.Fatal(err)
 }

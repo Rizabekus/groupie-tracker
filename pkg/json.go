@@ -1,24 +1,37 @@
 package pkg
 
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+)
+
 type Artists struct {
-	id           int      `json:"id"`
-	image        string   `json:"image"`
-	name         string   `json:"name"`
-	members      []string `json:"members"`
-	creationDate int      `json:"creationDate"`
-	firstAlbum   string   `json:"firstAlbum"`
-	locations    string   `json:"locations"`
-	concertDates string   `json:"concertDates"`
-	relations    string   `json:"relations"`
+	Id           int      `json:"id"`
+	Image        string   `json:"image"`
+	Name         string   `json:"name"`
+	Members      []string `json:"members"`
+	CreationDate int      `json:"creationDate"`
+	FirstAlbum   string   `json:"firstAlbum"`
+	Locations    string   `json:"locations"`
+	ConcertDates string   `json:"concertDates"`
+	Relations    string   `json:"relations"`
 }
 
-// type Locations struct {
-// 	locations []string `json:"locations"`
-// 	dates     []Dates  `json:"dates"`
-// }
+func GetApi() {
+	response, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer response.Body.Close()
+	resp, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	var Artist []Artists
+	json.Unmarshal(resp, &Artist)
 
-// type Dates struct {
-// 	dates []string `json:"dates"`
-// }
-
-// type Relations struct{}
+	fmt.Println(Artist)
+}

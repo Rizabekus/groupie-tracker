@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scrollable Boxes</title>
+  <style>
+    
+    
+    .box {
+        -moz-box-align: center;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 20px;
+      background-color: #e0e0e0;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+  </style>
+</head>
+<h1> Groupie-trecker</h1>
+<br>
+<body>
+  <div class="container">
+    <div class="box">
+      <h2>Box 1</h2>
+      <p>This is the content of Box 1.</p>
+    </div>
+    <div class="box">
+      <h2>Box 2</h2>
+      <p>This is the content of Box 2.</p>
+    </div>
+    <div class="box">
+      <h2>Box 3</h2>
+      <p>This is the content of Box 3.</p>
+    </div>
+  </div>
+
+  <script>
+       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
