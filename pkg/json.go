@@ -2,13 +2,12 @@ package pkg
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
 
-type Artists struct {
+type Artist struct {
 	Id           int      `json:"id"`
 	Image        string   `json:"image"`
 	Name         string   `json:"name"`
@@ -20,7 +19,7 @@ type Artists struct {
 	Relations    string   `json:"relations"`
 }
 
-func GetApi() {
+func GetApi() []Artist {
 	response, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
 	if err != nil {
 		log.Fatal(err)
@@ -30,8 +29,8 @@ func GetApi() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var Artist []Artists
-	json.Unmarshal(resp, &Artist)
+	var Artists []Artist
+	json.Unmarshal(resp, &Artists)
 
-	fmt.Println(Artist)
+	return Artists
 }

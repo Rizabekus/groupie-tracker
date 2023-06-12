@@ -1,41 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Scrollable Boxes</title>
+  <title>Scrollable Boxes with Links</title>
   <style>
-    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow-y: scroll;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
+    }
     
     .box {
-        -moz-box-align: center;
-      width: 200px;
-      height: 200px;
-      margin-bottom: 20px;
+      width: 300px;
+      height: 300px;
       background-color: #e0e0e0;
       border: 1px solid #ccc;
       padding: 10px;
+      text-align: center;
     }
   </style>
 </head>
-<h1> Groupie-trecker</h1>
-<br>
+
 <body>
   <div class="container">
-    <div class="box">
-      <h2>Box 1</h2>
-      <p>This is the content of Box 1.</p>
+{{range .}}   
+    <div class="box" onclick="navigateTo('/artist-page?id={{.Id}}')">
+        <img src={{.Image}} alt="image" >
+      <h2>{{.Name}}</h2>
     </div>
-    <div class="box">
-      <h2>Box 2</h2>
-      <p>This is the content of Box 2.</p>
-    </div>
-    <div class="box">
-      <h2>Box 3</h2>
-      <p>This is the content of Box 3.</p>
-    </div>
+   {{end}}
+    <!-- Add more boxes here if needed -->
   </div>
 
   <script>
-       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    function navigateTo(url) {
+      window.location.href = url;
+    }
+
+    // Optional: Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({
