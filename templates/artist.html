@@ -1,13 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artist-Page</title>
+  <title>My Beautiful Website</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    /* Content Styles */
+    .container {
+        text-align: center;
+      max-width: 800px;
+      min-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+     flex: 5;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin: 0 0 20px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Custom Styles */
+    /* Add your custom styles here */
+
+  </style>
 </head>
 <body>
+  <header>
     <h1>{{.Name}}</h1>
-    
+  </header>
+
+  <div class="container">
+    <img src={{.Image}} alt="image" >
+    <h2>Members</h2>
+<ul>
+  {{range .Members}}
+  <li>{{.}}</li>
+  {{end}}
+</ul>
+
+      
+
+
+    <h2>First Album</h2>
+    <p>{{.FirstAlbum}}</p>
+
+    <h2>Creation Date</h2>
+    <p>{{.CreationDate}}</p>
+  </div>
+
+  <footer>
+    &copy; Groupie-tracker by @rzhampeis and @aomirhan
+  </footer>
 </body>
 </html>

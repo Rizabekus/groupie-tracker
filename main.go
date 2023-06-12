@@ -11,8 +11,8 @@ func main() {
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
 	http.HandleFunc("/", pkg.MenuHandler)
 	http.HandleFunc("/artist-page", pkg.ArtistPageHandler)
-	log.Println("Server start on http://127.0.0.1:3000")
+	log.Println("Server start on http://127.0.0.1:2000")
 	log.Println("OK(200)")
-	err := http.ListenAndServe(":3000", nil)
+	err := http.ListenAndServe(":2000", nil)
 	log.Fatal(err)
 }
