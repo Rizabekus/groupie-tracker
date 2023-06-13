@@ -86,8 +86,3 @@ func CssHandler(w http.ResponseWriter, r *http.Request) {
 	ErrorHandler(w, http.StatusNotFound)
 	return
 }
-
-func CssHandler2(w http.ResponseWriter, r *http.Request) {
-	ErrorHandler(w, http.StatusNotFound)
-	return
-}
