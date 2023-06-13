@@ -19,6 +19,11 @@ type Artist struct {
 	Relations    string   `json:"relations"`
 }
 
+type ErrorStruct struct {
+	Status  int
+	Message string
+}
+
 func GetApi() []Artist {
 	response, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
 	if err != nil {
