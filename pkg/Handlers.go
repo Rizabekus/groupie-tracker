@@ -10,9 +10,7 @@ import (
 
 func MenuHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		// w.WriteHeader(http.StatusMethodNotAllowed)
-		// w.Write([]byte(http.StatusText(http.StatusMethodNotAllowed)))
-		// return
+
 		ErrorHandler(w, http.StatusMethodNotAllowed)
 		return
 	}
@@ -24,10 +22,7 @@ func MenuHandler(w http.ResponseWriter, r *http.Request) {
 	astists := GetApi()
 	tmp, err := template.ParseFiles("templates/form.html")
 	if err != nil {
-		// fmt.Print(err)
-		// w.WriteHeader(http.StatusInternalServerError)
-		// w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
-		// return
+
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	} else {
@@ -37,21 +32,17 @@ func MenuHandler(w http.ResponseWriter, r *http.Request) {
 
 func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		// w.WriteHeader(http.StatusMethodNotAllowed)
-		// w.Write([]byte(http.StatusText(http.StatusMethodNotAllowed)))
-		// return
+
 		ErrorHandler(w, http.StatusMethodNotAllowed)
 		return
 	}
 	artists := GetApi()
-	if r.URL.Path != "/artist-page" {
-		http.NotFound(w, r)
-		return
-	}
+
 	url := r.URL.String()
 	xurl := strings.Split(url, "id=")
 	id, _ := strconv.Atoi(xurl[1])
-	if url != "/info/?id="+xurl[1] {
+
+	if url != "/artist-page?id="+strconv.Itoa(id) {
 		ErrorHandler(w, http.StatusNotFound)
 		return
 	}
@@ -63,10 +54,7 @@ func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 	tmp, err := template.ParseFiles("templates/artist.html")
 
 	if err != nil {
-		// fmt.Print(err)
-		// w.WriteHeader(http.StatusInternalServerError)
-		// w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
-		// return
+
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	} else {
