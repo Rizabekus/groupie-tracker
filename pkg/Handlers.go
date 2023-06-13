@@ -16,6 +16,7 @@ func MenuHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorHandler(w, http.StatusMethodNotAllowed)
 		return
 	}
+
 	if r.URL.Path != "/" {
 		ErrorHandler(w, http.StatusNotFound)
 		return
@@ -91,4 +92,14 @@ func ErrorHandler(w http.ResponseWriter, status int) {
 		w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
 		return
 	}
+}
+
+func CssHandler(w http.ResponseWriter, r *http.Request) {
+	ErrorHandler(w, http.StatusNotFound)
+	return
+}
+
+func CssHandler2(w http.ResponseWriter, r *http.Request) {
+	ErrorHandler(w, http.StatusNotFound)
+	return
 }
