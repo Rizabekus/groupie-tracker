@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -28,6 +29,7 @@ type Final struct {
 	FirstAlbum   string
 	Locations    []string
 	ConcertDates []string
+	Relations    map[string][]string
 }
 
 type ErrorStruct struct {
@@ -40,7 +42,11 @@ type Locations struct {
 }
 
 type ConcertDates struct {
-	Dates []string `json:"dates"`
+	Dates map[string][]string `json:"dates"`
+}
+
+type Relations struct {
+	DatesLocations map[string][]string `json:"datesLocations"`
 }
 
 func GetApi() []Artist {
@@ -92,8 +98,33 @@ func GetApi2(artists []Artist, num int) Final {
 		CreationDate: artists[num-1].CreationDate,
 		FirstAlbum:   artists[num-1].FirstAlbum,
 		Locations:    LocationsStruct.Locations,
-		ConcertDates: DatesStruct.Dates,
 	}
+	fmt.Println(result.Members)
+
 	return result
 	// Specific Dates
+}
+
+func GetApi3(artist []Artist, id int) Final {
+	rel, err := http.Get(artist[id-1].Relations)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rel.Body.Close()
+	rels, err1 := ioutil.ReadAll(rel.Body)
+	if err1 != nil {
+		log.Fatal(err1)
+	}
+	var Relations Relations
+	json.Unmarshal(rels, &Relations)
+	final := Final{
+		Id:           artist[id-1].Id,
+		Image:        artist[id-1].Image,
+		Name:         artist[id-1].Name,
+		Members:      artist[id-1].Members,
+		CreationDate: artist[id-1].CreationDate,
+		Relations:    Relations.DatesLocations,
+	}
+
+	return final
 }

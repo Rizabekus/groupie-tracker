@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Scrollable Boxes with Links</title>
+  <title>Groupie-tracker</title>
   <style>
+
      header {
       background-color: #333;
       color: #fff;
       padding: 20px;
       text-align: center;
+    }
+    .box:hover{
+      transform: scale(1.1);
+      background-color: lightcoral;
     }
     body {
       margin: 0;
@@ -29,13 +34,15 @@
     }
     
     .box {
+      transition: background-color 0.5s ease;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      transition: transform 0.5s;
       width: 300px;
       height: 320px;
       background-color: #e0e0e0;
       border: 1px solid #ccc;
       padding: 10px;
       text-align: center;
-      cursor:pointer;
     }
     footer {
       background-color: #333;
@@ -43,12 +50,29 @@
       padding: 20px;
       text-align: center;
     }
+    a{
+      color: #fff;
+    }
+    .air{
+      margin:auto 10px;
+      background-color: #333;
+      mix-blend-mode: multiply;
+      max-width: 90px;
+      max-height: 90px;
+      float: left;
+      
+    }
+    h1{
+      font-family: serif;
+    }
+    
   </style>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
     <header>
+      <img class= "air" src="/image2" >
         <h1>Groupie-tracker</h1>
       </header>
   <div class="container">
@@ -77,7 +101,8 @@
     });
   </script>
   <footer>
-    &copy; Groupie-tracker by @rzhampeis and @aomirhan
+    &copy; Groupie-tracker by <a href="https://01.alem.school/git/rzhampeis" >@rzhampeis</a> and <a href="https://01.alem.school/git/aomirhan" >@aomirhan</a>
   </footer>
 </body>
 </html>
+

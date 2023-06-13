@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Beautiful Website</title>
+  <title>{{.Name}}</title>
   <style>
     /* Global Styles */
     body {
@@ -86,14 +86,17 @@
     <h2>Concert Dates and Locations</h2>
     <table>
       <tr>
-      {{range .Locations}}
-      <th>{{.}}</th>
-      {{end}}
+     
     </tr>
     <tr>
-      {{range .ConcertDates}}
-      <th>{{.}}</th>
-      {{end}}
+      {{ range $key, $values := .Relations }}
+        <h2>{{ $key }}</h2>
+        <ul>
+            {{ range $value := $values }}
+                <li>{{ $value }}</li>
+            {{ end }}
+        </ul>
+    {{ end }}
     </tr>
     
     </table>

@@ -41,7 +41,8 @@ func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.String()
 	xurl := strings.Split(url, "id=")
 	id, _ := strconv.Atoi(xurl[1])
-	Final := GetApi2(artists, id)
+	GetApi2(artists, id)
+	Final := GetApi3(artists, id)
 
 	if url != "/artist-page?id="+strconv.Itoa(id) {
 		ErrorHandler(w, http.StatusNotFound)
