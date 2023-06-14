@@ -46,14 +46,12 @@ func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	id, err := strconv.Atoi(xurl[1])
-	fmt.Println(xurl)
 	if err != nil {
-		ErrorHandler(w, http.StatusInternalServerError)
+		ErrorHandler(w, http.StatusNotFound)
 		return
 	}
 	// GetApi2(artists, id)
-	fmt.Println(url + " and " + "/artist-page?id=" + strconv.Itoa(id))
-	fmt.Println(url == "/artist-page?id="+strconv.Itoa(id))
+
 	if url != "/artist-page?id="+strconv.Itoa(id) {
 		ErrorHandler(w, http.StatusNotFound)
 		return
