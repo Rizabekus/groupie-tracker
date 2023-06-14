@@ -40,10 +40,20 @@ func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	url := r.URL.String()
 	xurl := strings.Split(url, "id=")
-	id, _ := strconv.Atoi(xurl[1])
-	// GetApi2(artists, id)
-	Final := GetApi3(artists, id)
+	if len(xurl) < 2 {
+		ErrorHandler(w, http.StatusNotFound)
+		return
+	}
 
+	id, err := strconv.Atoi(xurl[1])
+	fmt.Println(xurl)
+	if err != nil {
+		ErrorHandler(w, http.StatusInternalServerError)
+		return
+	}
+	// GetApi2(artists, id)
+	fmt.Println(url + " and " + "/artist-page?id=" + strconv.Itoa(id))
+	fmt.Println(url == "/artist-page?id="+strconv.Itoa(id))
 	if url != "/artist-page?id="+strconv.Itoa(id) {
 		ErrorHandler(w, http.StatusNotFound)
 		return
@@ -52,6 +62,7 @@ func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorHandler(w, http.StatusNotFound)
 		return
 	}
+	Final := GetApi3(artists, id)
 
 	tmp, err := template.ParseFiles("templates/artist.html")
 
