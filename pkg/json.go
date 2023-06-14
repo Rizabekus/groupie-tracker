@@ -2,7 +2,6 @@ package pkg
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -99,7 +98,6 @@ func GetApi2(artists []Artist, num int) Final {
 		FirstAlbum:   artists[num-1].FirstAlbum,
 		Locations:    LocationsStruct.Locations,
 	}
-	fmt.Println(result.Members)
 
 	return result
 	// Specific Dates
